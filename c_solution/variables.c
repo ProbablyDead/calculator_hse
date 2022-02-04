@@ -80,8 +80,8 @@ double calculate_variables(VARIABLE_ARR* arr_var,VARIABLE* var){
         --stack.current;
     }
 //    arr_print(&list);
-    DOUBLE_ARR new_stack;
-    init_double_arr(&new_stack);
+    COMPLEX_ARR new_stack;
+    init_complex_arr(&new_stack);
     int o=0;
 
     for (int i=0;i<list.current;++i){
@@ -106,13 +106,15 @@ double calculate_variables(VARIABLE_ARR* arr_var,VARIABLE* var){
                 if (new_stack.current==new_stack.max_size){
                     resize_double(&new_stack);
                 }
-                new_stack.arr[new_stack.current++]=arr_var->arr[j].value;
-                break;
+                new_stack.arr[new_stack.current++].real_value=arr_var->arr[j].value;
+                continue;
             }
 //            printf("%s\n",variables.arr[j].name);
         }
+//        printf("THERE IS NO VARIABLE: %s",list.str[i].st);
+//        exit(1);
     }
 
 //    arr_print_double(&new_stack);
-    return new_stack.arr[0];
+    return new_stack.arr[0].real_value;
 }
